@@ -330,7 +330,7 @@ public class QR extends Contract {
         return executeTransaction(function);
     }
 
-    public void getQRCoinInform(byte[] hash, byte[] data, String note, TransactionCallback callback) {
+    public void getQRCoinInform(QR qrSol, byte[] hash, byte[] data, String note, TransactionCallback callback) {
         final Function function = new Function(
                 FUNC_GETQRCOININFORM, 
                 Arrays.<Type>asList(new org.fisco.bcos.sdk.abi.datatypes.generated.Bytes32(hash), 

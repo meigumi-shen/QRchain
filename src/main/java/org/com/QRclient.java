@@ -2,8 +2,6 @@ package org.com;
 
 import org.com.fisco.QR;
 
-import java.math.BigInteger;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,11 +9,7 @@ public class QRclient<isend> {
     public QRclient(QR qrSol){
         boolean isend = false;
         while(!isend){
-            System.out.println("--------c-o-n-s-o-l-o--------");
-            System.out.println("-1,addAdministrator()");
-            System.out.println("-2,getQRCoinInform(hash,note)");
-            System.out.println("-3,createNewCoin(inputData)");
-            System.out.println("-4,logoutQRCoin(hash)");
+            view.show.ClientView();
             Scanner scan = new Scanner(System.in);
             String input = scan.next();
             switch (input){
@@ -27,7 +21,7 @@ public class QRclient<isend> {
                     byte[] hash = inputHash();
                     String note = inputString("note");
                     //
-                    String output = sol.QRCoinInform.getQRCoinInform(qrSol, hash,util.getDateString().getBytes(), note);
+                    String output = sol.QRCoinInform.getQRCoinInformTxRec(qrSol, hash,util.getDateString().getBytes(), note).toString();
 
                     System.out.println(output);
                     break;
