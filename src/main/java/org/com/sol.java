@@ -8,8 +8,6 @@ import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.fisco.bcos.sdk.model.callback.TransactionCallback;
 import org.fisco.bcos.sdk.transaction.model.exception.ContractException;
 
-
-
 public class sol {
     public static Client initClient(){
         BcosSDK sdk = BcosSDK.build("config-example.toml");
@@ -29,11 +27,23 @@ public class sol {
         QR qrSol = QR.load(contractAddr,client,cryptoKeyPair);
         return qrSol;
     }
-    public static String addAdministrator(QR sol){
-        TransactionReceipt txRec = sol.addAdministrator();
+    public static String addAdministrator(QR qrsol){
+        TransactionReceipt txRec = qrsol.addAdministrator();
         log.txReceiptLog(txRec);
+        String str = util.objectToString(txRec);
+
         String hash = txRec.getOutput();
         return hash;
+    }
+    public static class addAdminCallback extends TransactionCallback{
+        @Override
+        public void onResponse(TransactionReceipt receipt) {
+            log.txReceiptLog(receipt);
+
+        }
+    }
+    public static void addAdministratorAsync(QR qrsol){
+        qrsol.addAdministrator();
     }
     private static byte[] makeCoinData(byte[] data){
         //shi gong zhong
@@ -110,14 +120,14 @@ public class sol {
          *功能在这里面实现
          * 功能：异步获取回执，并对QRinform对象赋值
          */
-        public static class QRcallback extends TransactionCallback{
+        public static class QRCallback extends TransactionCallback{
             public void onResponse(TransactionReceipt trRec){
                 TxRec = trRec;
                 decodeTxRecOutput();
             }
         }
         public static void getQRCoinInformTxRecAsync(QR qrSol , byte[] hash, byte[] data , String note){
-            QRcallback callback = new QRcallback();
+            QRCallback callback = new QRCallback();
             qrSol.getQRCoinInform(qrSol , hash, data , note , callback);
         }
 

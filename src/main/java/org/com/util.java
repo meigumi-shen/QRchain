@@ -1,10 +1,14 @@
 package org.com;
 
-import org.fisco.bcos.sdk.abi.datatypes.generated.Int256;
-
-import java.math.BigInteger;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
+import javax.xml.bind.DatatypeConverter;
 
 public class util {
     public static byte[] inputData2bytes(String inputData) {
@@ -125,5 +129,59 @@ public class util {
         }
         System.out.println(str);
         return str.toString();
+    }
+    /**
+     * 把对象转成字符串
+     */
+    public static String objectToString(Object obj) {
+        // 对象转字节数组
+        String str = null;
+   //     Optional.ofNullable(obj).ifPresent(o -> {
+            try {
+                byte[] bytes = writeObj(obj);//byte[] bytes = writeObj(o)
+                str = DatatypeConverter.printBase64Binary(bytes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+     //   });
+        return str;
+    }
+
+    /**
+     * 解析字符串为对象
+     */
+    public static Object stringToObject(String str) {
+        Object obj = null;
+        //Optional.ofNullable(str).ifPresent(s -> {
+            try {
+                byte[] bytes = DatatypeConverter.parseBase64Binary(str);
+                obj = readObj(bytes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        //});
+        return obj;
+    }
+    /**
+     把对象转为字节数组
+     */
+    private static byte[] writeObj(Object obj) throws Exception {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
+        outputStream.writeObject(obj);
+        outputStream.close();
+        return byteArrayOutputStream.toByteArray();
+    }
+    /**
+     把字节数组转为对象
+     */
+    private static Object readObj(byte[] bytes) throws Exception {
+        ObjectInputStream inputStream = null;
+        try {
+            inputStream = new ObjectInputStream(new ByteArrayInputStream(bytes));
+            return inputStream.readObject();
+        } finally {
+            inputStream.close();
+        }
     }
 }
