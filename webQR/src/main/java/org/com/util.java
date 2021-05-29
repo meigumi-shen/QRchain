@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.xml.bind.DatatypeConverter;
 
@@ -147,6 +148,8 @@ public class util {
         return str;
     }
 
+
+
     /**
      * 解析字符串为对象
      */
@@ -163,7 +166,7 @@ public class util {
         return obj;
     }
     /**
-     把对象转为字节数组
+     *把对象转为字节数组
      */
     private static byte[] writeObj(Object obj) throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -183,5 +186,34 @@ public class util {
         } finally {
             inputStream.close();
         }
+    }
+    public static String inputString(String strName){
+        Scanner scan = new Scanner(System.in);
+        String inputData;
+        char c = 'n';
+        do{
+            System.out.println("please enter " +strName +" used \"enter\" as end.");
+            inputData = scan.nextLine();
+            if(inputData.length() == 0){
+                inputData = scan.nextLine();
+            }
+            System.out.println("your " + strName +" input is \""+ inputData + "\"");
+            System.out.println("enter\"y\"for next step, or enter\"n\" to reenter.");
+            c = scan.next().charAt(0);
+        }while (c != 'y');
+        return inputData;
+    }
+    public static String inputString(){
+        Scanner scan = new Scanner(System.in);
+        String inputData;
+        char c = 'n';
+        do{
+            System.out.println("please enter data used \"enter\" as end.");
+            inputData = scan.nextLine();
+            System.out.println("your data input is \""+ inputData + "\"");
+            System.out.println("enter\"y\"for next step, or enter\"n\" to reenter.");
+            c = scan.next().charAt(0);
+        }while (c != 'y');
+        return inputData;
     }
 }

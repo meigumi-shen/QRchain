@@ -29,9 +29,9 @@ public class BcosSDKTest
         Client client = sdk.getClient(Integer.valueOf(1));
 
         // 获取群组1的块高
-        BlockNumber blockNumber = client.getBlockNumber();
-        BigInteger i = blockNumber.getBlockNumber();
-        System.out.println(i);
+//        BlockNumber blockNumber = client.getBlockNumber();
+//        BigInteger i = blockNumber.getBlockNumber();
+//        System.out.println(i);
 
 
         // 向群组1部署HelloWorld合约

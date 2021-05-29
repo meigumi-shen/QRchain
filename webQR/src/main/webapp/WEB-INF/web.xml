@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>addAdministratorServlet</servlet-name>
+        <servlet-class>com.example.webQR.addAdministratorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addAdministratorServlet</servlet-name>
+        <url-pattern>/addAdministratorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>createNewCoinServlet</servlet-name>
+        <servlet-class>com.example.webQR.createNewCoinServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createNewCoinServlet</servlet-name>
+        <url-pattern>/createNewCoinServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>getQRCoinInformServlet</servlet-name>
+        <servlet-class>com.example.webQR.getQRCoinInformServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getQRCoinInformServlet</servlet-name>
+        <url-pattern>/getQRCoinInformServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>logoutQRCoinServlet</servlet-name>
+        <servlet-class>com.example.webQR.logoutQRCoinServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoutQRCoinServlet</servlet-name>
+        <url-pattern>/logoutQRCoinServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>deployNewContract</servlet-name>
+        <servlet-class>com.example.webQR.deployNewContract</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deployNewContract</servlet-name>
+        <url-pattern>/deployNewContract</url-pattern>
+    </servlet-mapping>
+</web-app>

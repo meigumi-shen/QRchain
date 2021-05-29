@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QRChainWeb3">
+    <output-path>$PROJECT_DIR$/out/artifacts/QRChainWeb3</output-path>
+    <root id="archive" name="QRChainWeb3.war">
+      <element id="dir-copy" path="$PROJECT_DIR$/webQR/src/main" />
+    </root>
+  </artifact>
+</component>

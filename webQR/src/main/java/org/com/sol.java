@@ -19,7 +19,17 @@ public class sol {
 
         //contractAddr , an init contract
         //String contractAddr = "0xa4547571cf750a2a23dbb8d25768829892ec39d9";//ver1001
-        String contractAddr = "0xdbff609ca613c5133db5d647272738f7aaaa396e";//ver1002
+//        String contractAddr = "0xdbff609ca613c5133db5d647272738f7aaaa396e";//ver1002
+
+        // 向群组1部署合约
+        CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
+        QR qrSol = QR.deploy(client, cryptoKeyPair);
+        //QR qrSol = QR.load(contractAddr,client,cryptoKeyPair);
+        return qrSol;
+    }
+    public static QR initSol(String QRHash) throws  ContractException {
+        Client client = initClient();
+        String contractAddr = QRHash;
 
         // 向群组1部署合约
         CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
